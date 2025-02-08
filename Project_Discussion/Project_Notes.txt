@@ -162,7 +162,7 @@ pipeline {
         stage('SCM_Checkout') {
             steps {
                echo "Perform SCM Checkout"
-			   git 'https://github.com/SA-Team-DevOps-03-Dec-24/BankingApp.git'			   
+			   git 'https://github.com/CyberNetrunner-0/BankingApp.git'			   
             }
         }
         stage('Application Build') {
@@ -174,9 +174,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
 				sh 'docker version'
-				sh "docker build -t loksaieta/bankapp-eta-app:${BUILD_NUMBER} ."
+				sh "docker build -t anshulsa/bankapp-eta-app:${BUILD_NUMBER} ."
 				sh 'docker image list'
-				sh "docker tag loksaieta/bankapp-eta-app:${BUILD_NUMBER} loksaieta/bankapp-eta-app:latest"
+				sh "docker tag anshulsa/bankapp-eta-app:${BUILD_NUMBER} anshulsa/bankapp-eta-app:latest"
             }
         }
 		stage('Login2DockerHub') {
@@ -187,7 +187,7 @@ pipeline {
 		}
 		stage('Publish_to_Docker_Registry') {
 			steps {
-				sh "docker push loksaieta/bankapp-eta-app:latest"
+				sh "docker push anshulsa/bankapp-eta-app:latest"
 			}
 		}
         stage('Deploy to Kubernetes Cluster') {
